@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build & cache outputs
+build/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+
+# Environment variables (keep .env.example tracked)
+.env*
+!.env.example
+
+# Logs & OS files
+*.log
+.DS_Store
+Thumbs.db
+
+# Local verification & platform workspace artifacts
+.playwright-cli/
+.aistudio/
+tmp/
