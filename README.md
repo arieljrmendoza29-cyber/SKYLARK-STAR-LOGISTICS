@@ -16,7 +16,7 @@ Corporate website and freight quote request platform for **Skylark Star Logistic
 
 These items need information from the business and are **not** filled in yet:
 
-- [ ] **Quote delivery** — connect the Google Sheet (see "Quote requests → Google Sheet" below). Until then, the quote form validates submissions but does not deliver them anywhere.
+- [ ] **Quote delivery** — connect the Google Sheet by following **[QUOTE_SETUP.md](QUOTE_SETUP.md)**. Until then, the quote form validates submissions but does not deliver them anywhere.
 - [ ] **Phone, email and business hours** — replace the placeholders in `src/utils/companyData.ts` (`contactPlaceholders`).
 - [ ] **Credentials** — the home page "Verified Company Record" section should show real USDOT / MC numbers or insurance details, or be reworded.
 - [ ] **Texas registration wording** — confirm the registration status text in `companyData.ts` is still accurate.
@@ -103,7 +103,7 @@ The workflow sets the base folder automatically, and copies `index.html` to `404
 
 GitHub Pages cannot run `server.ts`, so on Pages the browser sends quotes straight to a Google Apps Script web app that adds a row to a Google Sheet (and can email each request).
 
-1. Set up the Apps Script and copy its web app URL (ends in `/exec`). See the separate setup guide.
+1. Set up the Apps Script ([`google-apps-script/Code.gs`](google-apps-script/Code.gs)) and copy its web app URL (ends in `/exec`). Full steps: **[QUOTE_SETUP.md](QUOTE_SETUP.md)**.
 2. In the repo: **Settings → Secrets and variables → Actions → Variables → New repository variable**. Name `QUOTE_WEBHOOK_URL`, value = the URL.
 3. Re-run the "Deploy to GitHub Pages" workflow.
 
@@ -133,6 +133,8 @@ NODE_ENV=production npm start
 │   ├── components/            # Navbar, Footer, timeline, marquee, coverage map, SEO head...
 │   ├── pages/                 # Home, Services, About, Service Area, Contact, Legal, 404
 │   └── utils/                 # Company data, base-path helpers, quote validation, delivery & submission, rate limiter, tests
+├── google-apps-script/Code.gs # Google Sheet script for quote requests (see QUOTE_SETUP.md)
+├── QUOTE_SETUP.md             # Step-by-step quote form → Google Sheet setup
 ├── index.html                 # HTML entry, meta tags, Organization JSON-LD
 ├── server.ts                  # Express server
 └── vite.config.ts
