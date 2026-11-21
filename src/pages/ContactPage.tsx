@@ -282,6 +282,35 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                 </dl>
               </div>
 
+              <div className="bg-white rounded-3xl border border-[#EAD8C8] overflow-hidden">
+                <div className="aspect-[4/3] w-full bg-[#EAD8C8]/40">
+                  <iframe
+                    title={`Map of ${COMPANY_FACTS.locationDisplay}`}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(COMPANY_FACTS.mapQuery)}&output=embed`}
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    allowFullScreen
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-3 px-6 py-4">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <MapPin className="w-5 h-5 text-[#FF6500] shrink-0" aria-hidden="true" />
+                    <span className="text-sm font-semibold text-[#171717] truncate">
+                      {COMPANY_FACTS.locationDisplay}
+                    </span>
+                  </div>
+                  <a
+                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(COMPANY_FACTS.mapQuery)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 text-xs font-bold uppercase tracking-wider text-[#171717] underline decoration-[#FF6500] decoration-2 underline-offset-4 hover:text-[#FF6500] transition-colors"
+                  >
+                    Open in Google Maps
+                  </a>
+                </div>
+              </div>
+
               <div className="bg-[#171717] text-[#FFF5EB] rounded-3xl p-7 sm:p-8">
                 <div className="flex items-center gap-2.5 text-[#FF6500]">
                   <ShieldCheck className="w-5 h-5 shrink-0" aria-hidden="true" />

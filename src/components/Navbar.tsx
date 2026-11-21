@@ -66,7 +66,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
               src={COMPANY_FACTS.logoPath}
               alt="Skylark Star Logistics, LLC logo"
               className={`w-auto object-contain transition-all duration-500 ${
-                isFloating ? 'h-8 sm:h-9' : 'h-9 sm:h-10 lg:h-11'
+                isFloating ? 'h-7 min-[380px]:h-8 sm:h-9' : 'h-8 min-[380px]:h-9 sm:h-10 lg:h-11'
               }`}
               referrerPolicy="no-referrer"
             />
@@ -109,11 +109,13 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
             <a
               href={withBase('/contact')}
               onClick={(e) => handleLinkClick(e, '/contact')}
-              className={`hidden sm:inline-flex items-center justify-center bg-[#FF6500] hover:bg-[#E05800] text-[#171717] text-xs font-bold tracking-wider uppercase whitespace-nowrap shrink-0 shadow-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#171717] ${
-                isFloating ? 'px-4 py-2 rounded-full' : 'px-5 py-2.5 rounded-xl'
+              className={`inline-flex items-center justify-center bg-[#FF6500] hover:bg-[#E05800] text-[#171717] text-[11px] sm:text-xs font-bold tracking-wider uppercase whitespace-nowrap shrink-0 shadow-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#171717] ${
+                isFloating ? 'px-3 sm:px-4 py-2 rounded-full' : 'px-3 sm:px-5 py-2 sm:py-2.5 rounded-xl'
               }`}
             >
-              REQUEST A QUOTE
+              {/* Shorter label on phones so logo, button and menu fit on one line. */}
+              <span className="sm:hidden">GET A QUOTE</span>
+              <span className="hidden sm:inline">REQUEST A QUOTE</span>
             </a>
 
             <button

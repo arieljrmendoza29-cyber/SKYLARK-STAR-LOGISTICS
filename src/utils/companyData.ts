@@ -55,6 +55,8 @@ export const COMPANY_FACTS = {
   stateAbbr: 'TX',
   zipCode: '77571',
   locationDisplay: 'La Porte, Texas 77571',
+  /** What Google Maps searches for on the Contact page. Swap in the full street address once published. */
+  mapQuery: 'La Porte, TX 77571',
   industryDisplay: 'Transportation & Logistics',
   registrationStatusNote:
     'Established in 2022 as a Colorado LLC and currently registering to operate in Texas.',
