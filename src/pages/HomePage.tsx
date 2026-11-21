@@ -32,6 +32,7 @@ import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { TexasCoverageMap } from '../components/TexasCoverageMap';
 import { withBase } from '../utils/basePath';
+import { TiltFrame } from '../components/TiltFrame';
 
 interface HomePageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -129,19 +130,21 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
             {/* Right Column: Port Freight Partnership Handshake & Container Yard */}
             <div className="md:col-span-6 min-w-0 relative">
-              <motion.div
-                initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#171717] aspect-[4/3] shadow-lg"
-              >
-                <SafeImage
-                  src={SITE_IMAGES.heroLogisticsHandshake}
-                  alt="Logistics partners shaking hands at a commercial port corridor with stacked orange and navy freight containers, a semi-truck, and dockside cranes at golden hour"
-                  loading="eager"
-                  className="w-full h-full object-cover object-center"
-                />
-              </motion.div>
+              <TiltFrame className="rounded-2xl sm:rounded-3xl">
+                <motion.div
+                  initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#171717] aspect-[4/3] shadow-lg"
+                >
+                  <SafeImage
+                    src={SITE_IMAGES.heroLogisticsHandshake}
+                    alt="Logistics partners shaking hands at a commercial port corridor with stacked orange and navy freight containers, a semi-truck, and dockside cranes at golden hour"
+                    loading="eager"
+                    className="w-full h-full object-cover object-center"
+                  />
+                </motion.div>
+              </TiltFrame>
             </div>
           </div>
         </div>
@@ -259,13 +262,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
                         </div>
                       </div>
 
-                      <div className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-[#171717]">
+                      <TiltFrame className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-[#171717]">
                         <SafeImage
                           src={service.image}
                           alt={service.imageAlt}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                      </div>
+                      </TiltFrame>
 
                       <h3 className="font-display text-2xl sm:text-[1.65rem] font-extrabold tracking-tight text-[#171717]">
                         {service.title}
@@ -339,13 +342,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
               </p>
 
               <RevealSection delay={0.1} className="mt-7 sm:mt-8">
-                <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[16/10] bg-[#171717]">
+                <TiltFrame className="rounded-2xl sm:rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[16/10] bg-[#171717]">
                   <SafeImage
                     src={SITE_IMAGES.editorialContainers}
                     alt="Stacked white, orange, and charcoal cargo containers arranged cleanly at a freight terminal"
                     className="w-full h-full object-cover"
                   />
-                </div>
+                </TiltFrame>
               </RevealSection>
             </div>
 
@@ -388,13 +391,13 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <RevealSection delay={0.15} className="md:col-span-6">
-              <div className="rounded-3xl overflow-hidden border border-white/10 aspect-[16/10] bg-[#242424]">
+              <TiltFrame className="rounded-3xl overflow-hidden border border-white/10 aspect-[16/10] bg-[#242424]">
                 <SafeImage
                   src={SITE_IMAGES.texasFreightHub}
                   alt="Southeast Texas commercial freight hub with neatly staged white and orange trailers at golden hour"
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </TiltFrame>
               <p className="mt-4 text-xs text-[#FFF5EB]/65">
                 Headquartered in La Porte, Texas · Managed directly by {COMPANY_FACTS.managerName},{' '}
                 {COMPANY_FACTS.managerTitle}.

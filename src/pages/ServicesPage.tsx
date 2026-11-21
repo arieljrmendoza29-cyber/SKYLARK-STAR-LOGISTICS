@@ -4,6 +4,7 @@ import { OrangeAccentLine, RevealSection, SlideUpHeadline } from '../components/
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { withBase } from '../utils/basePath';
+import { TiltFrame } from '../components/TiltFrame';
 
 interface ServicesPageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -47,14 +48,14 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
             </div>
 
             <div className="md:col-span-5">
-              <div className="rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[4/3] bg-[#171717]">
+              <TiltFrame className="rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[4/3] bg-[#171717]">
                 <SafeImage
                   src={SITE_IMAGES.heroCargoTruck}
                   alt="Commercial semi-truck hauling a cargo container on an open Texas highway"
                   loading="eager"
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </TiltFrame>
             </div>
           </div>
         </div>
@@ -72,13 +73,13 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
               <RevealSection key={service.id}>
                 <div className="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-14 items-center">
                   <div className={`md:col-span-6 ${isReversed ? 'md:order-2' : ''}`}>
-                    <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#171717]">
+                    <TiltFrame className="aspect-[4/3] rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#171717]">
                       <SafeImage
                         src={service.image}
                         alt={service.imageAlt}
                         className="w-full h-full object-cover"
                       />
-                    </div>
+                    </TiltFrame>
                   </div>
 
                   <div

@@ -24,6 +24,21 @@
   }
 }
 
+/* Recommended Lenis smooth-scroll styles (https://github.com/darkroomengineering/lenis).
+   No CSS scroll-behavior: smooth here, because it fights Lenis and causes stutter. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+
+.lenis [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }

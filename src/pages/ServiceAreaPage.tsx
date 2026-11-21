@@ -5,6 +5,7 @@ import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { TexasCoverageMap } from '../components/TexasCoverageMap';
 import { withBase } from '../utils/basePath';
+import { TiltFrame } from '../components/TiltFrame';
 
 interface ServiceAreaPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -42,14 +43,14 @@ export function ServiceAreaPage({ onNavigate }: ServiceAreaPageProps) {
             </div>
 
             <div className="md:col-span-5">
-              <div className="rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[16/10] bg-[#171717]">
+              <TiltFrame className="rounded-3xl overflow-hidden border border-[#EAD8C8] aspect-[16/10] bg-[#171717]">
                 <SafeImage
                   src={SITE_IMAGES.texasFreightHub}
                   alt="Texas freight distribution corridor near La Porte and Houston"
                   loading="eager"
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </TiltFrame>
             </div>
           </div>
         </div>

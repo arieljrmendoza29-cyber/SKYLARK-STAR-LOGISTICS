@@ -5,6 +5,7 @@ import { OrangeAccentLine, RevealSection, SlideUpHeadline } from '../components/
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { withBase } from '../utils/basePath';
+import { TiltFrame } from '../components/TiltFrame';
 
 interface AboutPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -227,7 +228,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {GALLERY_ITEMS.map((item, idx) => (
               <RevealSection key={item.caption} delay={idx * 0.07}>
-                <figure className="group rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#FFF5EB]">
+                <TiltFrame as="figure" className="group rounded-3xl overflow-hidden border border-[#EAD8C8] bg-[#FFF5EB]">
                   <div className="aspect-[4/3] overflow-hidden bg-[#171717]">
                     <SafeImage
                       src={item.src}
@@ -239,7 +240,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
                     <CheckCircle2 className="w-4 h-4 text-[#FF6500] shrink-0" aria-hidden="true" />
                     <span>{item.caption}</span>
                   </figcaption>
-                </figure>
+                </TiltFrame>
               </RevealSection>
             ))}
           </div>

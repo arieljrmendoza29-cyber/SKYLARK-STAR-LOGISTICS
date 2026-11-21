@@ -10,6 +10,13 @@ import {
   shouldSoftSnap,
 } from '../utils/sectionSnap';
 
+/**
+ * When true, the page automatically glides to the nearest section after scrolling stops.
+ * Off for a natural, iPhone-like feel: the page stops exactly where the visitor lets go.
+ * The section rail on the right still glides to a section when clicked.
+ */
+const AUTO_SNAP_TO_SECTIONS = false;
+
 gsap.registerPlugin(ScrollTrigger);
 
 interface SectionMeta {
@@ -57,9 +64,13 @@ export function SoftSectionSnapController({ currentPath }: SoftSectionSnapContro
       return;
     }
 
+    // iPhone-style glide for mouse wheels and trackpads. Phones and tablets keep their own
+    // native touch scrolling (syncTouch: false), which already has real iOS/Android momentum.
     const lenis = new Lenis({
-      lerp: 0.1,
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      syncTouch: false,
     });
     lenisRef.current = lenis;
 
@@ -110,6 +121,7 @@ export function SoftSectionSnapController({ currentPath }: SoftSectionSnapContro
       const nearTarget = targets[nearIdx];
 
       if (
+        AUTO_SNAP_TO_SECTIONS &&
         shouldSoftSnap({
           scrollY: currentScroll,
           targetY: nearTarget,
