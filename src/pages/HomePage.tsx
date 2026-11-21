@@ -12,6 +12,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import {
   COMPANY_FACTS,
   CORE_SERVICES,
+  HERO_STATS,
   RoutePath,
   SITE_IMAGES,
   WORKING_PROCESS_STEPS,
@@ -21,6 +22,7 @@ import { GrowingSpineTimeline } from '../components/GrowingSpineTimeline';
 import { KineticServiceMarquee } from '../components/KineticServiceMarquee';
 import { ParticleDriftBackground } from '../components/ParticleDriftBackground';
 import {
+  AnimatedCounter,
   AnimatedYearCounter,
   FloatingCargoGraphic,
   LetterByLetterText,
@@ -33,6 +35,7 @@ import { SEOHead } from '../components/SEOHead';
 import { TexasCoverageMap } from '../components/TexasCoverageMap';
 import { withBase } from '../utils/basePath';
 import { TiltFrame } from '../components/TiltFrame';
+import { ServicesJourney } from '../components/ServicesJourney';
 
 interface HomePageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -123,7 +126,34 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 </a>
               </motion.div>
 
-              <p className="mt-5 sm:mt-7 text-xs font-medium text-[#171717]/65">
+              <motion.dl
+                initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8 sm:mt-10 grid grid-cols-3 max-w-lg divide-x divide-[#171717]/15"
+              >
+                {HERO_STATS.map((stat) => (
+                  <div key={stat.label} className="px-3 sm:px-5 first:pl-0 last:pr-0">
+                    <dt className="sr-only">{stat.label}</dt>
+                    <dd>
+                      <AnimatedCounter
+                        value={stat.value}
+                        from={stat.from}
+                        suffix={stat.suffix}
+                        className="block font-display text-3xl sm:text-4xl lg:text-[2.6rem] font-extrabold tracking-tight leading-none text-[#171717]"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="mt-2 block text-[11px] sm:text-xs font-bold uppercase tracking-wider text-[#FF6500]"
+                      >
+                        {stat.label}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </motion.dl>
+
+              <p className="mt-6 sm:mt-7 text-xs font-medium text-[#171717]/65">
                 {COMPANY_FACTS.registrationStatusNote}
               </p>
             </div>
@@ -206,7 +236,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
       </section>
 
       {/* 3. FOUR SERVICE CARDS — Orange & White Editorial Variations */}
-      <section data-snap-section data-snap-label="Core Services" className="py-16 sm:py-20 lg:py-28 bg-[#FFF5EB]">
+      <section data-snap-section data-snap-label="Core Services" className="pt-16 sm:pt-20 lg:pt-28 bg-[#FFF5EB]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-end mb-12 lg:mb-14">
             <div className="md:col-span-7">
@@ -225,103 +255,112 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8">
-            {CORE_SERVICES.map((service, index) => {
-              const Icon = SERVICE_ICONS[service.iconName];
-              // Editorial checkerboard rhythm: 0 & 3 Vibrant Orange, 1 & 2 Pure White
-              const isOrangeCard = index === 0 || index === 3;
-
-              return (
-                <RevealSection key={service.id} delay={index * 0.08}>
-                  <article
-                    className={`group h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
-                      isOrangeCard
-                        ? 'bg-[#FF6500] text-[#171717]'
-                        : 'bg-white text-[#171717] border border-[#EAD8C8]'
-                    }`}
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-4 mb-6">
-                        <span
-                          className={`font-mono text-sm font-bold ${
-                            isOrangeCard ? 'text-[#171717]/80' : 'text-[#FF6500]'
-                          }`}
-                        >
-                          {service.number}
-                        </span>
-                        <div
-                          className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
-                            isOrangeCard ? 'bg-white/90' : 'bg-[#FFF5EB] border border-[#EAD8C8]'
-                          }`}
-                        >
-                          <Icon
-                            className="w-5 h-5 text-[#171717]"
-                            strokeWidth={2}
-                            aria-hidden="true"
-                          />
-                        </div>
-                      </div>
-
-                      <TiltFrame className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-[#171717]">
-                        <SafeImage
-                          src={service.image}
-                          alt={service.imageAlt}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </TiltFrame>
-
-                      <h3 className="font-display text-2xl sm:text-[1.65rem] font-extrabold tracking-tight text-[#171717]">
-                        {service.title}
-                      </h3>
-                      <p
-                        className={`mt-3 text-sm sm:text-base leading-relaxed ${
-                          isOrangeCard ? 'text-[#171717]/90' : 'text-[#171717]/75'
-                        }`}
-                      >
-                        {service.shortDescription}
-                      </p>
-                    </div>
-
-                    <div
-                      className={`mt-7 pt-5 border-t flex items-center justify-between ${
-                        isOrangeCard ? 'border-[#171717]/15' : 'border-[#EAD8C8]'
-                      }`}
-                    >
-                      <a
-                        href={withBase('/services')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onNavigate('/services');
-                        }}
-                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#171717] group-hover:underline underline-offset-4"
-                      >
-                        <span>Explore Capability</span>
-                        <ArrowRight
-                          className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                          aria-hidden="true"
-                        />
-                      </a>
-                      <a
-                        href={withBase('/contact')}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          onNavigate('/contact', service.title);
-                        }}
-                        className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${
-                          isOrangeCard
-                            ? 'bg-[#171717] text-[#FFF5EB] hover:bg-[#2A2A2A]'
-                            : 'bg-[#FF6500] text-[#171717] hover:bg-[#E05800]'
-                        }`}
-                      >
-                        Quote
-                      </a>
-                    </div>
-                  </article>
-                </RevealSection>
-              );
-            })}
-          </div>
         </div>
+
+        {/* 3D camera-along-a-path tour; the card grid shows instead when 3D isn't available */}
+        <ServicesJourney
+          onNavigate={onNavigate}
+          fallback={
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20 lg:pb-28">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8">
+                  {CORE_SERVICES.map((service, index) => {
+                    const Icon = SERVICE_ICONS[service.iconName];
+                    // Editorial checkerboard rhythm: 0 & 3 Vibrant Orange, 1 & 2 Pure White
+                    const isOrangeCard = index === 0 || index === 3;
+
+                    return (
+                      <RevealSection key={service.id} delay={index * 0.08}>
+                        <article
+                          className={`group h-full rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 ${
+                            isOrangeCard
+                              ? 'bg-[#FF6500] text-[#171717]'
+                              : 'bg-white text-[#171717] border border-[#EAD8C8]'
+                          }`}
+                        >
+                          <div>
+                            <div className="flex items-center justify-between gap-4 mb-6">
+                              <span
+                                className={`font-mono text-sm font-bold ${
+                                  isOrangeCard ? 'text-[#171717]/80' : 'text-[#FF6500]'
+                                }`}
+                              >
+                                {service.number}
+                              </span>
+                              <div
+                                className={`w-12 h-12 rounded-2xl flex items-center justify-center ${
+                                  isOrangeCard ? 'bg-white/90' : 'bg-[#FFF5EB] border border-[#EAD8C8]'
+                                }`}
+                              >
+                                <Icon
+                                  className="w-5 h-5 text-[#171717]"
+                                  strokeWidth={2}
+                                  aria-hidden="true"
+                                />
+                              </div>
+                            </div>
+
+                            <TiltFrame className="aspect-[16/10] rounded-2xl overflow-hidden mb-6 bg-[#171717]">
+                              <SafeImage
+                                src={service.image}
+                                alt={service.imageAlt}
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                              />
+                            </TiltFrame>
+
+                            <h3 className="font-display text-2xl sm:text-[1.65rem] font-extrabold tracking-tight text-[#171717]">
+                              {service.title}
+                            </h3>
+                            <p
+                              className={`mt-3 text-sm sm:text-base leading-relaxed ${
+                                isOrangeCard ? 'text-[#171717]/90' : 'text-[#171717]/75'
+                              }`}
+                            >
+                              {service.shortDescription}
+                            </p>
+                          </div>
+
+                          <div
+                            className={`mt-7 pt-5 border-t flex items-center justify-between ${
+                              isOrangeCard ? 'border-[#171717]/15' : 'border-[#EAD8C8]'
+                            }`}
+                          >
+                            <a
+                              href={withBase('/services')}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onNavigate('/services');
+                              }}
+                              className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-[#171717] group-hover:underline underline-offset-4"
+                            >
+                              <span>Explore Capability</span>
+                              <ArrowRight
+                                className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                                aria-hidden="true"
+                              />
+                            </a>
+                            <a
+                              href={withBase('/contact')}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                onNavigate('/contact', service.title);
+                              }}
+                              className={`px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-colors ${
+                                isOrangeCard
+                                  ? 'bg-[#171717] text-[#FFF5EB] hover:bg-[#2A2A2A]'
+                                  : 'bg-[#FF6500] text-[#171717] hover:bg-[#E05800]'
+                              }`}
+                            >
+                              Quote
+                            </a>
+                          </div>
+                        </article>
+                      </RevealSection>
+                    );
+                  })}
+                </div>
+            </div>
+          }
+        />
       </section>
 
       {/* 4. FOUR-STEP WORKING PROCESS — GSAP ScrollTrigger Growing Spine Timeline */}

@@ -183,6 +183,61 @@ export function AnimatedYearCounter({
   );
 }
 
+/**
+ * Counts up from `from` to `value` once the number scrolls into view.
+ * Screen readers get the final value straight away.
+ */
+export function AnimatedCounter({
+  value,
+  from = 0,
+  suffix = '',
+  durationMs = 1400,
+  className = '',
+}: {
+  value: number;
+  from?: number;
+  suffix?: string;
+  durationMs?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLSpanElement | null>(null);
+  const isInView = useInView(ref, { once: true, amount: 0.6 });
+  const shouldReduceMotion = useReducedMotion();
+  const [displayValue, setDisplayValue] = useState(shouldReduceMotion ? value : from);
+
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setDisplayValue(value);
+      return;
+    }
+    if (!isInView) return;
+
+    let frameId = 0;
+    const startTime = performance.now();
+    const step = (now: number) => {
+      const progress = Math.min((now - startTime) / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 4);
+      setDisplayValue(Math.round(from + (value - from) * eased));
+      if (progress < 1) frameId = requestAnimationFrame(step);
+    };
+    frameId = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(frameId);
+  }, [isInView, shouldReduceMotion, from, value, durationMs]);
+
+  return (
+    <span ref={ref} className={className}>
+      <span aria-hidden="true" className="tabular-nums">
+        {displayValue}
+        {suffix}
+      </span>
+      <span className="sr-only">
+        {value}
+        {suffix}
+      </span>
+    </span>
+  );
+}
+
 export function FloatingCargoGraphic({ className = '' }: { className?: string }) {
   const shouldReduceMotion = useReducedMotion();
 

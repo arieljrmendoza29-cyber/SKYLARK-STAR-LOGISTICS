@@ -242,3 +242,22 @@ export const SERVICE_TYPE_OPTIONS = [
   'Delivery Services',
   'General Freight Inquiry',
 ] as const;
+
+export interface HeroStat {
+  value: number;
+  /** Where the count-up animation starts. */
+  from?: number;
+  suffix?: string;
+  label: string;
+}
+
+/**
+ * Animated numbers under the homepage hero.
+ * Only verifiable facts for now. When the client shares real figures
+ * (e.g. shipments delivered, miles driven, repeat clients), add or swap them here.
+ */
+export const HERO_STATS: HeroStat[] = [
+  { value: COMPANY_FACTS.establishedYear, from: 2010, label: 'Year Established' },
+  { value: CORE_SERVICES.length, label: 'Core Services' },
+  { value: COVERAGE_ZONES.length, label: 'Service Regions' },
+];

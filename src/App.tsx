@@ -4,6 +4,7 @@ import { RoutePath } from './utils/companyData';
 import { stripBase, withBase } from './utils/basePath';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
+import { CursorTrail } from './components/CursorTrail';
 import { SoftSectionSnapController } from './components/SoftSectionSnapController';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -100,6 +101,7 @@ export default function App() {
 
       <SoftSectionSnapController currentPath={currentPath} />
       <Footer onNavigate={navigate} />
+      <CursorTrail />
     </div>
   );
 }

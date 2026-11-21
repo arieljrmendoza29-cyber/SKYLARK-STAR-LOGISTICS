@@ -5,6 +5,7 @@ import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { withBase } from '../utils/basePath';
 import { TiltFrame } from '../components/TiltFrame';
+import { ServicesJourney } from '../components/ServicesJourney';
 
 interface ServicesPageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -59,6 +60,11 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* 3D camera-along-a-path tour of the four services */}
+      <section data-snap-section data-snap-label="Service Tour" className="bg-[#FFF5EB]">
+        <ServicesJourney onNavigate={onNavigate} showDetailsLink={false} />
       </section>
 
       {/* Four Detailed Service Sections */}
