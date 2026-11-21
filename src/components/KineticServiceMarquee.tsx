@@ -1,4 +1,5 @@
 import { CORE_SERVICES, ServiceItem } from '../utils/companyData';
+import { withBase } from '../utils/basePath';
 
 interface KineticServiceMarqueeProps {
   services?: ServiceItem[];
@@ -37,7 +38,7 @@ export function KineticServiceMarquee({
       {services.map((service) => (
         <span key={`${row}-${isDuplicate ? 'dup' : 'main'}-${service.id}`} className="inline-flex items-center gap-6 sm:gap-9">
           <a
-            href="/services"
+            href={withBase('/services')}
             tabIndex={isDuplicate ? -1 : undefined}
             onClick={handleClick}
             className={`font-display font-extrabold uppercase tracking-[-0.03em] text-3xl sm:text-5xl lg:text-[3.4rem] leading-[1.06] whitespace-nowrap transition-opacity duration-200 hover:opacity-80 ${

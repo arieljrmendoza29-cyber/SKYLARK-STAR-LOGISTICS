@@ -4,6 +4,7 @@ import { OrangeAccentLine, RevealSection, SlideUpHeadline } from '../components/
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { TexasCoverageMap } from '../components/TexasCoverageMap';
+import { withBase } from '../utils/basePath';
 
 interface ServiceAreaPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -146,7 +147,7 @@ export function ServiceAreaPage({ onNavigate }: ServiceAreaPageProps) {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <a
-                href="/contact"
+                href={withBase('/contact')}
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/contact');

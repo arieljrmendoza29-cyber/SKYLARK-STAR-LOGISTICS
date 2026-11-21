@@ -1,6 +1,7 @@
 import { ArrowRight, Compass } from 'lucide-react';
 import { RoutePath } from '../utils/companyData';
 import { SEOHead } from '../components/SEOHead';
+import { withBase } from '../utils/basePath';
 
 interface NotFoundPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -33,7 +34,7 @@ export function NotFoundPage({ onNavigate }: NotFoundPageProps) {
 
           <div className="mt-9 flex flex-wrap justify-center gap-4">
             <a
-              href="/"
+              href={withBase('/')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/');
@@ -44,7 +45,7 @@ export function NotFoundPage({ onNavigate }: NotFoundPageProps) {
               <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
             <a
-              href="/contact"
+              href={withBase('/contact')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/contact');

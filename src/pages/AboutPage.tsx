@@ -4,6 +4,7 @@ import { AnimatedBrandLogo } from '../components/AnimatedBrandLogo';
 import { OrangeAccentLine, RevealSection, SlideUpHeadline } from '../components/MotionPrimitives';
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
+import { withBase } from '../utils/basePath';
 
 interface AboutPageProps {
   onNavigate: (path: RoutePath) => void;
@@ -211,7 +212,7 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
               </h2>
             </div>
             <a
-              href="/contact"
+              href={withBase('/contact')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/contact');

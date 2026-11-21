@@ -2,7 +2,7 @@
 
 Corporate website and freight quote request platform for **Skylark Star Logistics, LLC** — <https://skylarkstarlogistics.com>
 
-[![CI](https://github.com/<your-username>/<your-repo>/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/<your-repo>/actions/workflows/ci.yml)
+[![CI](https://github.com/arieljrmendoza29-cyber/SKYLARK-STAR-LOGISTICS/actions/workflows/ci.yml/badge.svg)](https://github.com/arieljrmendoza29-cyber/SKYLARK-STAR-LOGISTICS/actions/workflows/ci.yml)
 
 ## Company overview
 
@@ -16,7 +16,7 @@ Corporate website and freight quote request platform for **Skylark Star Logistic
 
 These items need information from the business and are **not** filled in yet:
 
-- [ ] **Quote delivery** — set `QUOTE_WEBHOOK_URL`. Until it is set, the quote form validates submissions but does not deliver them anywhere.
+- [ ] **Quote delivery** — connect the Google Sheet (see "Quote requests → Google Sheet" below). Until then, the quote form validates submissions but does not deliver them anywhere.
 - [ ] **Phone, email and business hours** — replace the placeholders in `src/utils/companyData.ts` (`contactPlaceholders`).
 - [ ] **Credentials** — the home page "Verified Company Record" section should show real USDOT / MC numbers or insurance details, or be reworded.
 - [ ] **Texas registration wording** — confirm the registration status text in `companyData.ts` is still accurate.
@@ -44,7 +44,7 @@ npm run dev          # http://localhost:3000
 | `npm run dev` | Express + Vite dev server with hot reload |
 | `npm run lint` | Type-check (`tsc --noEmit`) |
 | `npm test` | Unit tests (quote validation, delivery, rate limiting, scroll snapping) |
-| `npm run build` | Production build into `dist/` |
+| `npm run build` | Production build into `dist/` (set `VITE_BASE_PATH=/SKYLARK-STAR-LOGISTICS/` to test a github.io build) |
 | `npm start` | Production server (set `NODE_ENV=production`, run `npm run build` first) |
 
 ### Environment variables
@@ -88,9 +88,30 @@ Webhook payload:
 }
 ```
 
-## Deployment
+## Deployment (GitHub Pages)
 
-Any Node.js host works (Render, Railway, Fly.io, a VPS, etc.):
+The site is published by `.github/workflows/deploy.yml` on every push to `main`.
+
+**One-time setup:** in the repo, go to **Settings → Pages → Build and deployment → Source** and choose **GitHub Actions**.
+
+- Address before a custom domain: `https://<user>.github.io/SKYLARK-STAR-LOGISTICS/`
+- Custom domain: add it under **Settings → Pages → Custom domain**, then re-run the "Deploy to GitHub Pages" workflow (**Actions** tab → workflow → **Run workflow**) so the site is rebuilt for the root address.
+
+The workflow sets the base folder automatically, and copies `index.html` to `404.html` so links such as `/services` work when opened directly.
+
+### Quote requests → Google Sheet
+
+GitHub Pages cannot run `server.ts`, so on Pages the browser sends quotes straight to a Google Apps Script web app that adds a row to a Google Sheet (and can email each request).
+
+1. Set up the Apps Script and copy its web app URL (ends in `/exec`). See the separate setup guide.
+2. In the repo: **Settings → Secrets and variables → Actions → Variables → New repository variable**. Name `QUOTE_WEBHOOK_URL`, value = the URL.
+3. Re-run the "Deploy to GitHub Pages" workflow.
+
+This URL ends up in the public JavaScript, so the Apps Script re-checks every submission and limits how many it accepts per hour.
+
+### Alternative: Node.js hosting
+
+`server.ts` still works on any Node host (VPS, Render, Railway...). There the browser posts to `/api/quote`, the server validates and rate-limits it, and forwards it to `QUOTE_WEBHOOK_URL` from the server environment (`.env`), keeping the URL private.
 
 ```bash
 npm ci
@@ -98,12 +119,12 @@ npm run build
 NODE_ENV=production npm start
 ```
 
-Set `QUOTE_WEBHOOK_URL`, and `TRUST_PROXY=1` if the host sits behind a proxy (most managed platforms do).
-
 ## Project structure
 
 ```text
-├── .github/workflows/ci.yml   # Type-check, test and build on every push / PR to main
+├── .github/workflows/
+│   ├── ci.yml                 # Type-check, test and build on every push / PR to main
+│   └── deploy.yml             # Publish to GitHub Pages on every push to main
 ├── public/
 │   ├── brand/                 # Logo (PNG + WebP) and 1200×630 social preview image
 │   ├── images/                # Site photography (optimized JPEGs)
@@ -111,7 +132,7 @@ Set `QUOTE_WEBHOOK_URL`, and `TRUST_PROXY=1` if the host sits behind a proxy (mo
 ├── src/
 │   ├── components/            # Navbar, Footer, timeline, marquee, coverage map, SEO head...
 │   ├── pages/                 # Home, Services, About, Service Area, Contact, Legal, 404
-│   └── utils/                 # Company data, quote validation & delivery, rate limiter, tests
+│   └── utils/                 # Company data, base-path helpers, quote validation, delivery & submission, rate limiter, tests
 ├── index.html                 # HTML entry, meta tags, Organization JSON-LD
 ├── server.ts                  # Express server
 └── vite.config.ts
@@ -124,8 +145,8 @@ git init
 git add .
 git commit -m "Initial commit: Skylark Star Logistics website"
 git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
+git remote add origin https://github.com/arieljrmendoza29-cyber/SKYLARK-STAR-LOGISTICS.git
 git push -u origin main
 ```
 
-Then replace `<your-username>/<your-repo>` in the CI badge at the top of this file.
+Then switch **Settings → Pages → Source** to **GitHub Actions**.

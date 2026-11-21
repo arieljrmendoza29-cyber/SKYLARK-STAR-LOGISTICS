@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { COMPANY_FACTS, CORE_SERVICES, NAV_ITEMS, RoutePath } from '../utils/companyData';
+import { withBase } from '../utils/basePath';
 
 interface FooterProps {
   onNavigate: (path: RoutePath) => void;
@@ -18,7 +19,7 @@ export function Footer({ onNavigate }: FooterProps) {
           {/* Brand Column */}
           <div className="lg:col-span-4">
             <a
-              href="/"
+              href={withBase('/')}
               onClick={(e) => handleLink(e, '/')}
               className="inline-block mb-5 focus-visible:outline-2 focus-visible:outline-[#FF6500] rounded-xl"
               aria-label="Skylark Star Logistics, LLC Home"
@@ -48,7 +49,7 @@ export function Footer({ onNavigate }: FooterProps) {
               {NAV_ITEMS.map((item) => (
                 <li key={item.path}>
                   <a
-                    href={item.path}
+                    href={withBase(item.path)}
                     onClick={(e) => handleLink(e, item.path)}
                     className="text-[#FFF5EB]/80 hover:text-[#FF6500] transition-colors"
                   >
@@ -68,7 +69,7 @@ export function Footer({ onNavigate }: FooterProps) {
               {CORE_SERVICES.map((service) => (
                 <li key={service.id}>
                   <a
-                    href="/services"
+                    href={withBase('/services')}
                     onClick={(e) => handleLink(e, '/services')}
                     className="text-[#FFF5EB]/80 hover:text-[#FF6500] transition-colors"
                   >
@@ -113,14 +114,14 @@ export function Footer({ onNavigate }: FooterProps) {
           <p>{COMPANY_FACTS.copyright}</p>
           <div className="flex items-center gap-6">
             <a
-              href="/privacy-policy"
+              href={withBase('/privacy-policy')}
               onClick={(e) => handleLink(e, '/privacy-policy')}
               className="hover:text-[#FF6500] transition-colors whitespace-nowrap"
             >
               Privacy Policy
             </a>
             <a
-              href="/terms-and-conditions"
+              href={withBase('/terms-and-conditions')}
               onClick={(e) => handleLink(e, '/terms-and-conditions')}
               className="hover:text-[#FF6500] transition-colors whitespace-nowrap"
             >

@@ -3,6 +3,7 @@ import { CORE_SERVICES, RoutePath, SITE_IMAGES } from '../utils/companyData';
 import { OrangeAccentLine, RevealSection, SlideUpHeadline } from '../components/MotionPrimitives';
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
+import { withBase } from '../utils/basePath';
 
 interface ServicesPageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -136,7 +137,7 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
 
                     <div className="mt-8">
                       <a
-                        href="/contact"
+                        href={withBase('/contact')}
                         onClick={(e) => {
                           e.preventDefault();
                           onNavigate('/contact', service.title);
@@ -172,7 +173,7 @@ export function ServicesPage({ onNavigate }: ServicesPageProps) {
             </p>
             <div className="mt-7">
               <a
-                href="/contact"
+                href={withBase('/contact')}
                 onClick={(e) => {
                   e.preventDefault();
                   onNavigate('/contact');

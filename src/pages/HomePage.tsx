@@ -31,6 +31,7 @@ import {
 import { SafeImage } from '../components/SafeImage';
 import { SEOHead } from '../components/SEOHead';
 import { TexasCoverageMap } from '../components/TexasCoverageMap';
+import { withBase } from '../utils/basePath';
 
 interface HomePageProps {
   onNavigate: (path: RoutePath, servicePreselect?: string) => void;
@@ -99,7 +100,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                 className="mt-7 sm:mt-9 flex flex-wrap items-center gap-3 sm:gap-4"
               >
                 <a
-                  href="/contact"
+                  href={withBase('/contact')}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('/contact');
@@ -110,7 +111,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                   <ArrowRight className="w-4 h-4" aria-hidden="true" />
                 </a>
                 <a
-                  href="/services"
+                  href={withBase('/services')}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('/services');
@@ -181,7 +182,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
                 <div className="mt-8">
                   <a
-                    href="/about"
+                    href={withBase('/about')}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('/about');
@@ -284,7 +285,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                       }`}
                     >
                       <a
-                        href="/services"
+                        href={withBase('/services')}
                         onClick={(e) => {
                           e.preventDefault();
                           onNavigate('/services');
@@ -298,7 +299,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                         />
                       </a>
                       <a
-                        href="/contact"
+                        href={withBase('/contact')}
                         onClick={(e) => {
                           e.preventDefault();
                           onNavigate('/contact', service.title);
@@ -421,7 +422,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <a
-              href="/service-area"
+              href={withBase('/service-area')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/service-area');
@@ -548,7 +549,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
 
                 <div className="mt-9 flex flex-wrap items-center gap-4">
                   <a
-                    href="/contact"
+                    href={withBase('/contact')}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('/contact');
@@ -559,7 +560,7 @@ export function HomePage({ onNavigate }: HomePageProps) {
                     <ArrowRight className="w-4 h-4 text-[#FF6500]" aria-hidden="true" />
                   </a>
                   <a
-                    href="/contact"
+                    href={withBase('/contact')}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate('/contact');

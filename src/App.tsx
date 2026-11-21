@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { RoutePath } from './utils/companyData';
+import { stripBase, withBase } from './utils/basePath';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { SoftSectionSnapController } from './components/SoftSectionSnapController';
@@ -22,7 +23,8 @@ const LIGHT_HERO_PATHS = new Set<string>([
   '/terms-and-conditions',
 ]);
 
-function normalizePath(pathname: string): string {
+function normalizePath(rawPathname: string): string {
+  const pathname = stripBase(rawPathname);
   if (pathname.length > 1 && pathname.endsWith('/')) {
     return pathname.slice(0, -1);
   }
@@ -47,8 +49,9 @@ export default function App() {
   const navigate = useCallback((path: RoutePath, servicePreselect?: string) => {
     setPreselectedService(servicePreselect);
     const target = normalizePath(path);
-    if (window.location.pathname !== target) {
-      window.history.pushState({}, '', target);
+    const url = withBase(target);
+    if (window.location.pathname !== url) {
+      window.history.pushState({}, '', url);
     }
     setCurrentPath(target);
     window.scrollTo({ top: 0, behavior: 'auto' });

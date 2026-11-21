@@ -1,3 +1,5 @@
+import { withBase } from './basePath.ts';
+
 export type RoutePath =
   | '/'
   | '/services'
@@ -44,7 +46,7 @@ export const COMPANY_FACTS = {
   legalName: 'Skylark Star Logistics, LLC',
   shortName: 'Skylark Star Logistics',
   websiteUrl: 'https://skylarkstarlogistics.com/',
-  logoPath: '/brand/skylark-logo.webp',
+  logoPath: withBase('/brand/skylark-logo.webp'),
   establishedYear: 2022,
   managerName: 'James Johnson',
   managerTitle: 'Manager / Owner',
@@ -67,16 +69,16 @@ export const COMPANY_FACTS = {
 } as const;
 
 export const SITE_IMAGES = {
-  heroLogisticsHandshake: '/images/hero-logistics-handshake.jpg',
-  heroCargoTruck: '/images/hero-cargo-truck.jpg',
-  editorialContainers: '/images/editorial-cargo-containers.jpg',
-  texasFreightHub: '/images/texas-freight-hub.jpg',
-  heroHighway: '/images/hero-highway-freight.jpg',
-  transportation: '/images/service-transportation.jpg',
-  logistics: '/images/service-logistics.jpg',
-  freightHandling: '/images/service-freight-handling.jpg',
-  delivery: '/images/service-delivery.jpg',
-  laporteCorridor: '/images/about-laporte-corridor.jpg',
+  heroLogisticsHandshake: withBase('/images/hero-logistics-handshake.jpg'),
+  heroCargoTruck: withBase('/images/hero-cargo-truck.jpg'),
+  editorialContainers: withBase('/images/editorial-cargo-containers.jpg'),
+  texasFreightHub: withBase('/images/texas-freight-hub.jpg'),
+  heroHighway: withBase('/images/hero-highway-freight.jpg'),
+  transportation: withBase('/images/service-transportation.jpg'),
+  logistics: withBase('/images/service-logistics.jpg'),
+  freightHandling: withBase('/images/service-freight-handling.jpg'),
+  delivery: withBase('/images/service-delivery.jpg'),
+  laporteCorridor: withBase('/images/about-laporte-corridor.jpg'),
 } as const;
 
 export const NAV_ITEMS: NavItem[] = [

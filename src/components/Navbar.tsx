@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { COMPANY_FACTS, NAV_ITEMS, RoutePath } from '../utils/companyData';
+import { withBase } from '../utils/basePath';
 
 interface NavbarProps {
   currentPath: string;
@@ -56,7 +57,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
         <div className="w-full max-w-7xl mx-auto flex items-center justify-between gap-4 lg:gap-6">
           {/* Zone 1: Official Skylark Star Logistics Logo */}
           <a
-            href="/"
+            href={withBase('/')}
             onClick={(e) => handleLinkClick(e, '/')}
             className="shrink-0 inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FF6500] rounded-xl"
             aria-label="Skylark Star Logistics, LLC Home"
@@ -78,7 +79,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
               return (
                 <a
                   key={item.path}
-                  href={item.path}
+                  href={withBase(item.path)}
                   onClick={(e) => handleLinkClick(e, item.path)}
                   aria-current={isActive ? 'page' : undefined}
                   className={`group relative py-1.5 text-sm font-semibold whitespace-nowrap shrink-0 transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#FF6500] ${
@@ -106,7 +107,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
           {/* Zone 3: Primary Orange CTA + Mobile Menu Toggle */}
           <div className="flex items-center gap-2.5 sm:gap-3 shrink-0">
             <a
-              href="/contact"
+              href={withBase('/contact')}
               onClick={(e) => handleLinkClick(e, '/contact')}
               className={`hidden sm:inline-flex items-center justify-center bg-[#FF6500] hover:bg-[#E05800] text-[#171717] text-xs font-bold tracking-wider uppercase whitespace-nowrap shrink-0 shadow-sm transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#171717] ${
                 isFloating ? 'px-4 py-2 rounded-full' : 'px-5 py-2.5 rounded-xl'
@@ -151,7 +152,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
               return (
                 <a
                   key={item.path}
-                  href={item.path}
+                  href={withBase(item.path)}
                   onClick={(e) => handleLinkClick(e, item.path)}
                   aria-current={isActive ? 'page' : undefined}
                   className={`px-4 py-3 rounded-xl text-sm font-semibold transition-colors ${
@@ -166,7 +167,7 @@ export function Navbar({ currentPath, onNavigate, hasDarkHero = false }: NavbarP
             })}
             <div className="pt-3 mt-2 border-t border-[#EAD8C8]">
               <a
-                href="/contact"
+                href={withBase('/contact')}
                 onClick={(e) => handleLinkClick(e, '/contact')}
                 className="w-full inline-flex items-center justify-center px-5 py-3 rounded-xl bg-[#171717] hover:bg-[#2A2A2A] text-[#FFF5EB] text-xs font-bold tracking-wider uppercase transition-colors"
               >

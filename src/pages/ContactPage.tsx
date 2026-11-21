@@ -20,6 +20,8 @@ import {
 } from '../utils/quoteValidation';
 import { OrangeAccentLine, SlideUpHeadline } from '../components/MotionPrimitives';
 import { SEOHead } from '../components/SEOHead';
+import { withBase } from '../utils/basePath';
+import { submitQuote } from '../utils/quoteClient';
 
 /** Today's date in the visitor's local time as YYYY-MM-DD (for the date picker's min). */
 function todayIsoDate(): string {
@@ -118,12 +120,7 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('/api/quote', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(validation.sanitized),
-      });
-      const data = await response.json();
+      const data = await submitQuote(validation.sanitized);
 
       if (data.status === 'validation_error' && data.errors) {
         setErrors(data.errors);
@@ -672,7 +669,7 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                     <label htmlFor="consentAccepted" className="text-xs text-[#171717]/80 leading-relaxed">
                       I acknowledge the{' '}
                       <a
-                        href="/privacy-policy"
+                        href={withBase('/privacy-policy')}
                         onClick={(e) => {
                           e.preventDefault();
                           onNavigate('/privacy-policy');

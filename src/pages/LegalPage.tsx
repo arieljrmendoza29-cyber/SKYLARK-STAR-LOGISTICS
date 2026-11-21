@@ -1,6 +1,7 @@
 import { ArrowLeft } from 'lucide-react';
 import { COMPANY_FACTS, RoutePath } from '../utils/companyData';
 import { SEOHead } from '../components/SEOHead';
+import { withBase } from '../utils/basePath';
 
 interface LegalPageProps {
   mode: 'privacy' | 'terms';
@@ -115,7 +116,7 @@ export function LegalPage({ mode, onNavigate }: LegalPageProps) {
 
           <div className="pt-6 border-t border-[#EAD8C8]">
             <a
-              href="/"
+              href={withBase('/')}
               onClick={(e) => {
                 e.preventDefault();
                 onNavigate('/');

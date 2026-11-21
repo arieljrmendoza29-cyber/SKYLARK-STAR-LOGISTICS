@@ -15,7 +15,7 @@ export interface QuoteDeliveryResponse {
   body: {
     ok: boolean;
     delivered: boolean;
-    status: 'delivered' | 'integration_pending' | 'validation_error' | 'spam_rejected' | 'delivery_failed';
+    status: 'delivered' | 'integration_pending' | 'validation_error' | 'spam_rejected' | 'delivery_failed' | 'rate_limited';
     referenceId?: string;
     message: string;
     errors?: QuoteFieldErrors;
