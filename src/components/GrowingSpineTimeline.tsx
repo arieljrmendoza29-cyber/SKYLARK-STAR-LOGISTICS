@@ -63,7 +63,8 @@ export function GrowingSpineTimeline({ steps }: GrowingSpineTimelineProps) {
           scrollTrigger: {
             trigger: item,
             start: 'top 78%',
-            toggleActions: 'play none none reverse',
+            // Reveal once and stay visible; scrolling back up no longer hides the step text.
+            toggleActions: 'play none none none',
           },
         });
 
@@ -97,8 +98,16 @@ export function GrowingSpineTimeline({ steps }: GrowingSpineTimelineProps) {
       ScrollTrigger.refresh();
     };
 
-    const ro = new ResizeObserver(handleRefresh);
+    // Recalculate trigger points whenever the page above changes height
+    // (photos loading, the 3D services tour starting), so reveals fire at the right spot.
+    let refreshTimer = 0;
+    const scheduleRefresh = () => {
+      window.clearTimeout(refreshTimer);
+      refreshTimer = window.setTimeout(handleRefresh, 150);
+    };
+    const ro = new ResizeObserver(scheduleRefresh);
     ro.observe(root);
+    ro.observe(document.body);
 
     let cancelled = false;
     if (document.fonts && document.fonts.ready) {
@@ -111,6 +120,7 @@ export function GrowingSpineTimeline({ steps }: GrowingSpineTimelineProps) {
 
     return () => {
       cancelled = true;
+      window.clearTimeout(refreshTimer);
       ro.disconnect();
       ctx.revert();
     };
