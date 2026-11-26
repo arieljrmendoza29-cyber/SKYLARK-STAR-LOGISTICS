@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin, Phone } from 'lucide-react';
 import { COMPANY_FACTS, CORE_SERVICES, NAV_ITEMS, RoutePath } from '../utils/companyData';
 import { withBase } from '../utils/basePath';
 
@@ -93,14 +93,21 @@ export function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />
                 <span className="text-[#FFF5EB]/65">
-                  Phone: {COMPANY_FACTS.contactPlaceholders.phone}
+                  Phone: {COMPANY_FACTS.contact.phone}
                 </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />
-                <span className="text-[#FFF5EB]/65">
-                  Email: {COMPANY_FACTS.contactPlaceholders.email}
-                </span>
+                <a
+                  href={`mailto:${COMPANY_FACTS.contact.email}`}
+                  className="hover:text-[#FF6500] transition-colors break-all"
+                >
+                  {COMPANY_FACTS.contact.email}
+                </a>
+              </li>
+              <li className="flex items-start gap-3">
+                <Clock className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />
+                <span>{COMPANY_FACTS.contact.hours}</span>
               </li>
             </ul>
             <p className="mt-4 text-xs text-[#FFF5EB]/60">

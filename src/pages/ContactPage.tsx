@@ -255,7 +255,7 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                     <div>
                       <dt className="font-bold text-[#171717]">Direct Phone</dt>
                       <dd className="text-[#171717]/70 mt-0.5">
-                        {COMPANY_FACTS.contactPlaceholders.phone}
+                        {COMPANY_FACTS.contact.phone}
                       </dd>
                     </div>
                   </div>
@@ -263,9 +263,14 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                   <div className="flex items-start gap-3.5">
                     <Mail className="w-5 h-5 text-[#171717] mt-0.5 shrink-0" aria-hidden="true" />
                     <div>
-                      <dt className="font-bold text-[#171717]">Direct Email</dt>
-                      <dd className="text-[#171717]/70 mt-0.5">
-                        {COMPANY_FACTS.contactPlaceholders.email}
+                      <dt className="font-bold text-[#171717]">Email</dt>
+                      <dd className="mt-0.5">
+                        <a
+                          href={`mailto:${COMPANY_FACTS.contact.email}`}
+                          className="text-[#171717]/80 underline decoration-[#FF6500] decoration-2 underline-offset-4 hover:text-[#FF6500] transition-colors break-all"
+                        >
+                          {COMPANY_FACTS.contact.email}
+                        </a>
                       </dd>
                     </div>
                   </div>
@@ -274,9 +279,7 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                     <Clock className="w-5 h-5 text-[#171717] mt-0.5 shrink-0" aria-hidden="true" />
                     <div>
                       <dt className="font-bold text-[#171717]">Business Hours</dt>
-                      <dd className="text-[#171717]/70 mt-0.5">
-                        {COMPANY_FACTS.contactPlaceholders.hours}
-                      </dd>
+                      <dd className="text-[#171717]/80 mt-0.5">{COMPANY_FACTS.contact.hours}</dd>
                     </div>
                   </div>
                 </dl>

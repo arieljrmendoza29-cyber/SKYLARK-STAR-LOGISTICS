@@ -62,10 +62,11 @@ export const COMPANY_FACTS = {
     'Established in 2022 as a Colorado LLC and currently registering to operate in Texas.',
   missionStatement:
     'To provide dependable transportation and logistics solutions through professional service, efficient coordination, and a commitment to customer satisfaction.',
-  contactPlaceholders: {
+  contact: {
+    /** Still a placeholder: replace with the real number once published. */
     phone: 'To be confirmed upon phone line publication',
-    email: 'To be connected once client email credentials are provided',
-    hours: 'To be confirmed by operations management',
+    email: 'info@skylarkstarlogistics.com',
+    hours: '9:00 AM – 5:00 PM Pacific Time',
   },
   copyright: '© 2026 Skylark Star Logistics, LLC. All Rights Reserved.',
 } as const;

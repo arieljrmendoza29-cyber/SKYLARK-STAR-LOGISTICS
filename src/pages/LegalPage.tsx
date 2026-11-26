@@ -73,8 +73,14 @@ export function LegalPage({ mode, onNavigate }: LegalPageProps) {
                 <p>
                   Automated form delivery is only active once authorized client email or CRM
                   credentials are connected. For privacy inquiries regarding {COMPANY_FACTS.legalName},
-                  please reach out through our official contact channels once published, or write to
-                  management in {COMPANY_FACTS.locationDisplay}.
+                  please email{' '}
+                  <a
+                    href={`mailto:${COMPANY_FACTS.contact.email}`}
+                    className="font-semibold text-[#171717] underline decoration-[#FF6500] decoration-2 underline-offset-4"
+                  >
+                    {COMPANY_FACTS.contact.email}
+                  </a>
+                  .
                 </p>
               </div>
             </>
