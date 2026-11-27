@@ -63,8 +63,6 @@ export const COMPANY_FACTS = {
   missionStatement:
     'To provide dependable transportation and logistics solutions through professional service, efficient coordination, and a commitment to customer satisfaction.',
   contact: {
-    /** Still a placeholder: replace with the real number once published. */
-    phone: 'To be confirmed upon phone line publication',
     email: 'info@skylarkstarlogistics.com',
     hours: '9:00 AM – 5:00 PM Pacific Time',
   },

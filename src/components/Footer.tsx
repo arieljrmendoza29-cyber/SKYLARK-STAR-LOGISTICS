@@ -1,4 +1,4 @@
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin } from 'lucide-react';
 import { COMPANY_FACTS, CORE_SERVICES, NAV_ITEMS, RoutePath } from '../utils/companyData';
 import { withBase } from '../utils/basePath';
 
@@ -89,12 +89,6 @@ export function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-start gap-3">
                 <MapPin className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />
                 <span>{COMPANY_FACTS.locationDisplay}</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <Phone className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />
-                <span className="text-[#FFF5EB]/65">
-                  Phone: {COMPANY_FACTS.contact.phone}
-                </span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-[#FF6500] mt-0.5 shrink-0" aria-hidden="true" />

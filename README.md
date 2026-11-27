@@ -17,7 +17,6 @@ Corporate website and freight quote request platform for **Skylark Star Logistic
 These items need information from the business and are **not** filled in yet:
 
 - [ ] **Quote delivery** — connect the Google Sheet by following **[QUOTE_SETUP.md](QUOTE_SETUP.md)**. Until then, the quote form validates submissions but does not deliver them anywhere.
-- [ ] **Phone, email and business hours** — replace the placeholders in `src/utils/companyData.ts` (`contactPlaceholders`).
 - [ ] **Credentials** — the home page "Verified Company Record" section should show real USDOT / MC numbers or insurance details, or be reworded.
 - [ ] **Texas registration wording** — confirm the registration status text in `companyData.ts` is still accurate.
 

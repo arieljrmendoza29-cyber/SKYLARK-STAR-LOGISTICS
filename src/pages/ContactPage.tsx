@@ -9,7 +9,6 @@ import {
   Info,
   Mail,
   MapPin,
-  Phone,
   ShieldCheck,
 } from 'lucide-react';
 import { COMPANY_FACTS, RoutePath, SERVICE_TYPE_OPTIONS } from '../utils/companyData';
@@ -247,16 +246,6 @@ export function ContactPage({ onNavigate, preselectedService }: ContactPageProps
                     <div>
                       <dt className="font-bold text-[#171717]">Business Location</dt>
                       <dd className="text-[#171717]/80 mt-0.5">{COMPANY_FACTS.locationDisplay}</dd>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3.5">
-                    <Phone className="w-5 h-5 text-[#171717] mt-0.5 shrink-0" aria-hidden="true" />
-                    <div>
-                      <dt className="font-bold text-[#171717]">Direct Phone</dt>
-                      <dd className="text-[#171717]/70 mt-0.5">
-                        {COMPANY_FACTS.contact.phone}
-                      </dd>
                     </div>
                   </div>
 
