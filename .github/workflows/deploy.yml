@@ -38,7 +38,7 @@ jobs:
         run: npm run build
         env:
           # "" on a custom domain, "/<repo>" on <user>.github.io/<repo>
-          VITE_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          VITE_BASE_PATH: /
           # Google Sheets webhook. Set under Settings → Secrets and variables → Actions → Variables.
           VITE_QUOTE_WEBHOOK_URL: ${{ vars.QUOTE_WEBHOOK_URL }}
 
